@@ -13,7 +13,14 @@ platform :android do
     gradle(
       task: task,
       flavor: flavor,
-      build_type: build_type
+      build_type: build_type,
+       print_command: false,
+        properties: {
+          "android.injected.signing.store.file" => "android-certificate.jks",
+          "android.injected.signing.store.password" => "test123",
+          "android.injected.signing.key.alias" => "android-fastlanetest",
+          "android.injected.signing.key.password" => "test123",
+        }
     )
   end
 
