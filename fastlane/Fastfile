@@ -2,6 +2,21 @@ default_platform(:android)
 
 platform :android do
 
+ ensure_git_status_clean
+  lane :build do |options|
+    flavor = options[:flavor]
+    build_type = options[:type]
+    task = options[:task]
+    gradle(
+      task: "clean"
+    )
+    gradle(
+      task: task,
+      flavor: flavor,
+      build_type: build_type
+    )
+  end
+
  lane :qa do |options|
     branch = options[:branch]
     release = options[:release]
@@ -9,6 +24,7 @@ platform :android do
     group = options[:group]
     flavour = options[:flavour]
     checkout_branch(branch)
+    build(flavor: flavour, type: "Release", task: "assemble")
   end
 
    def checkout_branch(branch)
