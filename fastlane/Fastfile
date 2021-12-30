@@ -36,7 +36,13 @@ $production_flavour = "production"
      if flavour == nil
           flavour = "release"
         end
-    build(flavor: flavour, type: "Release", task: "assemble")
+    gradle(
+        task: "clean"
+      )
+      gradle(
+        task: "assemble",
+        build_type: "Release"
+      )
   end
 
    def checkout_branch(branch)
