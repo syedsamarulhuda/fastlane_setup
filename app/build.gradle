@@ -19,7 +19,7 @@ android {
 
     signingConfigs {
         release {
-            def keystorePropertiesFile = file("../keystore.properties");
+            def keystorePropertiesFile = file("../keystore.properties")
             def keystoreProperties = new Properties()
             keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
@@ -31,7 +31,7 @@ android {
             v2SigningEnabled true
         }
         staging {
-            def keystorePropertiesFile = file("../keystore.properties");
+            def keystorePropertiesFile = file("../keystore.properties")
             def keystoreProperties = new Properties()
             keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
