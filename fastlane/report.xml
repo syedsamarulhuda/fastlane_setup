@@ -5,7 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000381">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000565">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: git fetch origin test-1" time="0.435111">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: git checkout test-1" time="0.028913">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: git reset --hard origin/test-1" time="0.028526">
         
       </testcase>
     
