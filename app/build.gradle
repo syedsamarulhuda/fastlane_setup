@@ -30,13 +30,35 @@ android {
             v1SigningEnabled true
             v2SigningEnabled true
         }
+        staging {
+            def keystorePropertiesFile = file("../keystore.properties");
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+            storeFile file(keystoreProperties['PROD_STORE_FILE'])
+            storePassword keystoreProperties['PROD_STORE_PASSWORD']
+            keyAlias keystoreProperties['PROD_KEY_ALIAS']
+            keyPassword keystoreProperties['PROD_KEY_PASSWORD']
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
     }
 
     buildTypes {
         release {
+            applicationIdSuffix ".release"
             signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        staging {
+            applicationIdSuffix ".staging"
+            signingConfigs.staging
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
         }
     }
     compileOptions {
