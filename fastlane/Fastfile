@@ -2,6 +2,8 @@ default_platform(:android)
 
 platform :android do
 
+$production_flavour = "production"
+
  ensure_git_status_clean
   lane :build do |options|
     flavor = options[:flavor]
@@ -14,13 +16,13 @@ platform :android do
       task: task,
       flavor: flavor,
       build_type: build_type,
-       print_command: false,
-        properties: {
-          "android.injected.signing.store.file" => "android-certificate.jks",
-          "android.injected.signing.store.password" => "test123",
-          "android.injected.signing.key.alias" => "android-fastlanetest",
-          "android.injected.signing.key.password" => "test123",
-        }
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => "android-certificate.jks",
+        "android.injected.signing.store.password" => "test123",
+        "android.injected.signing.key.alias" => "android-fastlanetest",
+        "android.injected.signing.key.password" => "test123",
+      }
     )
   end
 
@@ -31,6 +33,9 @@ platform :android do
     group = options[:group]
     flavour = options[:flavour]
     checkout_branch(branch)
+     if flavour == nil
+          flavour = "release"
+        end
     build(flavor: flavour, type: "Release", task: "assemble")
   end
 
