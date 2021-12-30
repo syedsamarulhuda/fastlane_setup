@@ -14,7 +14,6 @@ $production_flavour = "production"
     )
     gradle(
       task: task,
-      flavor: flavor,
       build_type: build_type,
       print_command: false,
       properties: {
